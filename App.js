@@ -1,20 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import DataProvider, { DataContext } from "./context/DataContext";
+import DetectNetwork from "./utils/detect network/DetectNetwork";
+import RenderScreens from "./utils/render screens/RenderScreens";
+import React, { useContext, useEffect } from 'react'
+import NetInfo from "@react-native-community/netinfo";
 
 export default function App() {
+
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <DataProvider>
+      <DetectNetwork/>
+        <RenderScreens />
+    </DataProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
