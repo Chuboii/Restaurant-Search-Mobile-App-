@@ -1,14 +1,19 @@
-import { View, Text, TextInput } from 'react-native'
+import { View, Text,TouchableOpacity, TextInput } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 import { styles } from './SearchBar.style';
 
 
-const SearchBar = ({onChangeInputText, onTextSubmit, value}) => {
+const SearchBar = ({onChangeInputText, onTextSubmit, value, navigation}) => {
+
+const navigateToHome = () => navigation.navigate("home")
 
   return (
-    <View>
-    <AntDesign name="arrowleft" size={24} color="black" />
+    <View style={styles.container}>
+    <TouchableOpacity onPress={navigateToHome}>
+    <AntDesign name="arrowleft" size={24} color="black" style={styles.icon}/>
+    </TouchableOpacity>
       <TextInput
+          style={styles.input}
             value={value}
             onChangeText={onChangeInputText}
             onEndEditing={onTextSubmit}

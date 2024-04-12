@@ -4,12 +4,15 @@ import { AntDesign } from '@expo/vector-icons';
 import useSearchData from '../../hooks/use search data/useSearchData';
 import { DataContext } from '../../context/DataContext';
 import SearchBar from '../../components/search bar/SearchBar';
+import {styles} from "./SearchScreen.style"
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const SearchScreen = ({navigation}) => {
     const [searchValue, setSearchValue] = useState("")
     const [onSearchSubmit] = useSearchData()
     const { state, dispatch } = useContext(DataContext)
   
+  /*
   
     useEffect(() => {
         if (state.isNetworkConnected) {
@@ -20,20 +23,21 @@ const SearchScreen = ({navigation}) => {
     }
       }, [state.isNetworkConnected])
 
-    
+    */
     const onChangeText = (value: string) => {
         setSearchValue(value)
     }
     
 
   return (
-      <View>
+      <SafeAreaView style={styles.container}>
     <SearchBar
+        navigation={navigation}
         value={searchValue}
         onChangeInputText={onChangeText}
         onTextSubmit={() => onSearchSubmit(searchValue, navigation)}
       />
-    </View>
+    </SafeAreaView>
   )
 }
 

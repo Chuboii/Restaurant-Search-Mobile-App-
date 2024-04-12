@@ -15,18 +15,18 @@ export default () => {
           const response = await Yelp.get("/search", {
             params: {
               term: searchValue,
-              limit: 5,
+              limit: 1,
               location:"san jose"
             }
           })
-      
+          console.log(response.data.businesses)
           dispatch({ type: "SET_SEARCH_DATA", payload: response.data.businesses })
         }
         catch (err) {
           console.log(err);
           
           if (err.code === "ERR_NETWORK") {
-               navigation.navigate("error")
+               //navigation.navigate("error")
             dispatch({ type: "IS_ERROR", payload: true })
           }
           else {
