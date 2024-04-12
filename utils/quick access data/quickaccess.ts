@@ -7,31 +7,47 @@ export const QuickAccessData = [
 },
   {
   id:2,
-  name:"Food"
+  name:"restaurants"
 },
   {
   id:3,
-  name:"Snacks"
+  name:"beauty & spas"
 },
   {
   id:4,
-  name:"Station"
+  name:"arts & entertainment"
 },
   {
   id:5,
-  name:"5 stars"
+  name:"health & medical"
 },
   {
   id:6,
-  name:"Exclusive"
+  name:"pets"
 },
   {
   id:7,
-  name:"Low Budget"
+  name:"shopping"
 },
   {
   id:8,
-  name:"Cost Effective"
-}
-
+  name:"hotel & travels"
+  },
+  {
+    id:9,
+    name:"local flavour"
+  },
+  {
+    id:10,
+    name:"local services"
+  },
+  {
+    id:11,
+    name:"nightlife"
+  },
+  {
+    id:12,
+    name:"professional services"
+    },
+  
 ]

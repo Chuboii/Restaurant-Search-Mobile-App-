@@ -23,9 +23,7 @@ export const styles = StyleSheet.create({
         height:50
     },
     wrapper:{
-      alignItems:"center",
-      justifyContent:"center",
-      flexDirection:"row",
-      marginTop:50
+      marginTop: 30,
+      paddingBottom:320
     }
 })

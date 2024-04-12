@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import SearchBar from '../../components/search bar/SearchBar'
@@ -14,15 +14,18 @@ const HomeScreen = ({ navigation }) => {
   const { state, dispatch } = useContext(DataContext)
 
 useEffect(() => {
-   const retriveDataFromApi = async() => {
+  const retriveDataFromApi = async () => {
+
      try{
        const response = await Yelp.get("/search", {
          params:{
-           term:"pasta",
+           term:state.touchMenuValue ? state.touchMenuValue : "all",
            limit:4,
            location:"new york"
          }
        })
+ 
+       console.log(response.data.businesses)      
        dispatch({type:"SET_API_DATA", payload:response.data.businesses})
      }
      catch(err){
@@ -30,7 +33,7 @@ useEffect(() => {
      }
    }
    retriveDataFromApi()
-},[])
+},[state.touchMenuValue])
 
 
 /*
@@ -49,25 +52,34 @@ useEffect(() => {
   return (
     <>
       <SafeAreaView style={styles.main}>
-      <View style={styles.container}>
+        <View style={styles.container}>
+         
 <AntDesign name="search1" size={24} style={styles.icon} color="black" />
       <TouchableOpacity onPress={navigateToSearchScreen}  style={styles.input} >
              <Text>Search your favorite restaurants</Text>
           </TouchableOpacity>
         </View>
- <QuickAccess/>
-  {state.apiData ? <FlatList
-    data={state.apiData}
-    renderItem={({item}) => <Restaurant
-       name={item.alias}
-       reviewCount={item.review_count}
-       ratings={item.ratings}
-      image={item.image_url}
-    />
-    }
+        <QuickAccess />
+        
+  <View style={styles.wrapper}>
+        {state.apiData ? <FlatList
+            showsVerticalScrollIndicator={false}
+            data={state.apiData}
+            renderItem={({ item }) => {
+              console.log(item.categories.name);
+              
+              return (
+              <Restaurant
+                name={item.name}
+                reviewCount={item.review_count}
+                ratings={item.rating}
+                image={item.image_url}
+        />
+  )}}
     keyExtractor={(data) => data.id}
-    numColumns={3}
-  /> : <Text>loading</Text>}
+    numColumns={2}
+          /> : <Text>loading</Text>}
+        </View>
       </SafeAreaView>
     </>
   )

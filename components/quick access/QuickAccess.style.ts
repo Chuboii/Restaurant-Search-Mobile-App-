@@ -2,7 +2,7 @@ import {StyleSheet} from "react-native"
 
 export const styles = StyleSheet.create({
    container:{
-     marginTop:18,
+     marginTop:25,
      paddingHorizontal:12
    },
    btn:{
@@ -13,7 +13,8 @@ export const styles = StyleSheet.create({
      marginHorizontal:4
    },
    text:{
-     color:"white"
+     color: "white",
+     textTransform:"capitalize"
    },
    active:{
      backgroundColor:"blueviolet",
@@ -22,6 +23,7 @@ export const styles = StyleSheet.create({
      marginHorizontal:4
    },
    textActive:{
-     color:"blueviolet"
+     color: "blueviolet",
+     textTransform:"capitalize"
    }
 })

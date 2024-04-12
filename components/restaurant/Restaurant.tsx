@@ -1,12 +1,13 @@
-import {View, Text, Image} from "react-native"
+import {View, Text, Image, TouchableOpacity} from "react-native"
 import {styles} from "./Restaurant.style"
 import Stars from "../stars/Stars"
 import {colors} from "../../utils/colors/colors"
+import { FontAwesome } from '@expo/vector-icons';
 
 const Restaurant = ({name, image, reviewCount, ratings}) => {
   
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container}>
     <Image style={styles.img} source={{uri:image}}/>
     
     <View style={styles.wrapper}>
@@ -15,7 +16,7 @@ const Restaurant = ({name, image, reviewCount, ratings}) => {
     
     <View style={styles.wrapper}>
     
-    <Text style={styles.price}> $55 </Text>
+    <Text style={styles.price}> $100 </Text>
     
     <View style={styles.wrapper}>
     <View style={styles.wrapper}>
@@ -25,14 +26,15 @@ const Restaurant = ({name, image, reviewCount, ratings}) => {
     <Stars color={colors.PRIMARY_COLOR} size={0} styling={styles.icon}/>
     <Stars color={colors.PRIMARY_COLOR}
     size={0} styling={styles.icon}
-    />
+            />
+   <FontAwesome name="star-half-empty" style={styles.icon} color={colors.PRIMARY_COLOR} />
     </View>
     
-    <Text style={styles.text}> {reviewCount} </Text>
+    <Text style={styles.text}> {ratings} </Text>
     </View>
     </View>
 
-    </View>
+    </TouchableOpacity>
     )
 }
 

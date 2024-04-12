@@ -9,6 +9,7 @@ export const DataContext = createContext()
 const INITIAL_SEARCH_DATA = {
   searchData: null,
   apiData: null,
+  touchMenuValue: null,
   errorMessage: null,
   isError: false,
   isLoading: false,
@@ -52,6 +53,11 @@ const searchReducer = (state, action) => {
         ...state,
         apiData: payload
       }
+      case "SET_TOUCH_MENU_VALUE":
+        return {
+          ...state,
+          touchMenuValue: payload
+        }
     default:
       return state
   }
