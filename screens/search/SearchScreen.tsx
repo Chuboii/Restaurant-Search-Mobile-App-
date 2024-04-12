@@ -13,6 +13,10 @@ const SearchScreen = ({navigation}) => {
     const [onSearchSubmit] = useSearchData()
     const { state, dispatch } = useContext(DataContext)
   
+  useEffect(() => {
+      dispatch({type:"SET_SEARCH_DATA", payload:null})
+    }, [])
+   
   /*
   
     useEffect(() => {
