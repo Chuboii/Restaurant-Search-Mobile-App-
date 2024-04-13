@@ -1,29 +1,28 @@
 import {StyleSheet} from "react-native"
+import {colors} from "../../utils/colors/colors"
 
 export const styles = StyleSheet.create({
    container:{
-     marginTop:25,
-     paddingHorizontal:12
+     marginTop:18,
+     paddingHorizontal:5
    },
    btn:{
-     borderColor:"blueviolet",
+     borderColor:colors.primary,
      borderWidth:1.5,
      padding:8,
      borderRadius:7,
      marginHorizontal:4
    },
    text:{
-     color: "white",
-     textTransform:"capitalize"
+     color:colors.white
    },
    active:{
-     backgroundColor:"blueviolet",
+     backgroundColor:colors.primary,
      padding:8,
      borderRadius:7,
      marginHorizontal:4
    },
    textActive:{
-     color: "blueviolet",
-     textTransform:"capitalize"
+     color:colors.primary
    }
 })

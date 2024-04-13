@@ -4,7 +4,7 @@ import { colors } from "../../utils/colors/colors";
 export const styles = StyleSheet.create({
    container:{
      flexDirection:'row',
-     backgroundColor: "rgba(0,0,0,.1)",
+     backgroundColor: "rgba(0,0,0,.2)",
      padding:5,
      alignItems:'center'
    },

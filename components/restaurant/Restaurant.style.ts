@@ -13,6 +13,10 @@ export const styles = StyleSheet.create({
       flexDirection: "row",
       justifyContent:"space-between"
    },
+   wrapper1:{
+     flexDirection: "row",
+     marginRight:5
+   },
    title:{
       fontSize: 17,
       fontWeight: "bold",
@@ -22,7 +26,8 @@ export const styles = StyleSheet.create({
      
    },
    price:{
-      fontSize:17
+      fontSize:16,
+      fontWeight:"600"
    },
    img:{
       width:'100%',

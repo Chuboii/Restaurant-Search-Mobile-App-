@@ -19,7 +19,7 @@ export default () => {
               location:"san jose"
             }
           })
-          console.log(response.data.businesses)
+       //   console.log(response.data.businesses)
           dispatch({ type: "SET_SEARCH_DATA", payload: response.data.businesses })
         }
         catch (err) {

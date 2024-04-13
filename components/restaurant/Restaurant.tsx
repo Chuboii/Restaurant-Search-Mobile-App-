@@ -19,18 +19,19 @@ const Restaurant = ({name, image, reviewCount, ratings}) => {
     <Text style={styles.price}> $100 </Text>
     
     <View style={styles.wrapper}>
-    <View style={styles.wrapper}>
-    <Stars color={colors.PRIMARY_COLOR}
+    <View style={styles.wrapper1}>
+    <Stars color={colors.tertiary}
     size={0} styling={styles.icon}/>
-    <Stars color={colors.PRIMARY_COLOR}  size={0} styling={styles.icon}/>
-    <Stars color={colors.PRIMARY_COLOR} size={0} styling={styles.icon}/>
-    <Stars color={colors.PRIMARY_COLOR}
+    <Stars color={colors.tertiary}  size={0} styling={styles.icon}/>
+    <Stars color={colors.tertiary} size={0} styling={styles.icon}/>
+    <Stars color={colors.tertiary}
     size={0} styling={styles.icon}
             />
-   <FontAwesome name="star-half-empty" style={styles.icon} color={colors.PRIMARY_COLOR} />
+   <FontAwesome name="star-half-empty" style={styles.icon}
+   color={colors.tertiary} />
     </View>
     
-    <Text style={styles.text}> {ratings} </Text>
+    <Text style={styles.text}> ({ratings}) </Text>
     </View>
     </View>
 

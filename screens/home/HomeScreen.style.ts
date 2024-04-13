@@ -1,18 +1,18 @@
 import { StyleSheet } from "react-native";
+import {colors} from "../../utils/colors/colors"
 
 export const styles = StyleSheet.create({
   main:{
-    padding: 5,
-    backgroundColor:"#eee"
+    padding:0,
   },
     container: {
-        marginHorizontal: 15,
+        marginHorizontal: 5,
         borderRadius: 30,
-        marginTop: 50,
+        marginTop: 10,
         flexDirection: "row",
         alignItems: "center",
         borderColor: "black",
-        borderWidth:1.5,
+        borderWidth:1.5
     },
     icon: {
       left:25
@@ -24,7 +24,15 @@ export const styles = StyleSheet.create({
         height:50
     },
     wrapper:{
-      marginTop: 30,
-      paddingBottom:320
+      alignItems:"center",
+      justifyContent:"center",
+      flexDirection:"row",
+      marginTop:10
+    },
+    title:{
+      fontSize:30,
+      marginTop:15,
+      color: colors.primary,
+      fontWeight:"bold"
     }
 })
