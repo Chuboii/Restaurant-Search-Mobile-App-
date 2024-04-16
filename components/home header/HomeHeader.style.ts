@@ -4,10 +4,11 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection:"row",
     justifyContent:"space-between",
+    padding: 10,
     alignItems:"center",
-    padding:10
+  
   },
   icon:{
-    
+     fontSize:30
   }
 });

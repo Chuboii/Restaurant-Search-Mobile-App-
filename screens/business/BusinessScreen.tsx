@@ -7,12 +7,13 @@ import {useEffect} from "react"
 import { AntDesign } from '@expo/vector-icons';
 
 const BusinessScreen = ({navigation}) => {
- const {id} = useRoute().params
-/*
+ const route= useRoute() 
+
  useEffect(() => {
    const getResultDetails = async () => {
-     try{
-     const response = await Yelp.get(`/${id}`)
+     try {
+       console.log(route.params.id)
+     const response = await Yelp.get(`/${route.params.id}`)
      //console.log(response.data)
      }
      catch(err){
@@ -20,7 +21,7 @@ const BusinessScreen = ({navigation}) => {
      }
    }
   getResultDetails()
- }, [])*/
+ }, [])
 
   return (
     <SafeAreaView>
