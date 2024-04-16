@@ -12,22 +12,28 @@ import Restaurant from "../../components/restaurant/Restaurant"
 import QuickAccess from "../../components/quick access/QuickAccess"
 import WelcomeText from "../../components/welcome text/WelcomeText"
 import BillBoard from "../../components/bill board/BillBoard"
+import HomeHeader from "../../components/home header/HomeHeader"
+
+
 const HomeScreen = ({ navigation }) => {
   const { state, dispatch } = useContext(DataContext)
+/*
 
 useEffect(() => {
+  
   const retriveDataFromApi = async () => {
-
      try{
+    console.log("rerender")
        const response = await Yelp.get("/search", {
          params:{
            term:state.touchMenuValue ? state.touchMenuValue : "all",
-           limit:8,
-           location:"new york"
+           limit:2,
+           location: "London"
+           
          }
        })
- 
-      // console.log(response.data.businesses)      
+       
+    // console.log(response.data.businesses)
        dispatch({type:"SET_API_DATA", payload:response.data.businesses})
      }
      catch(err){
@@ -35,9 +41,9 @@ useEffect(() => {
      }
    }
    retriveDataFromApi()
-},[state.touchMenuValue])
-
-
+   
+},[state.touchMenuValue, state.dropDownValue])
+*/
 /*
   useEffect(() => {
     if (state.isNetworkConnected) {
@@ -48,12 +54,14 @@ useEffect(() => {
 }
   }, [state.isNetworkConnected])
 */
+
  const navigateToSearchScreen = () => navigation.navigate("search")
 
 
   return (
     <>
       <SafeAreaView style={styles.main}>
+      <HomeHeader/>
       <WelcomeText/>
         <View style={styles.container}>
          
@@ -75,10 +83,12 @@ useEffect(() => {
               return (
               
               <Restaurant
+                id={item.id}
                 name={item.name}
                 reviewCount={item.review_count}
                 ratings={item.rating}
                 image={item.image_url}
+                navigation={navigation}
         />
   )}}
     keyExtractor={(data) => data.id}

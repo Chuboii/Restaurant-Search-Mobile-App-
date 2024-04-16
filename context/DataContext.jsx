@@ -13,7 +13,8 @@ const INITIAL_SEARCH_DATA = {
   errorMessage: null,
   isError: false,
   isLoading: false,
-  isNetworkConnected: false
+  isNetworkConnected: false,
+  dropDownValue: null
 }
 
 const searchReducer = (state, action) => {
@@ -53,11 +54,16 @@ const searchReducer = (state, action) => {
         ...state,
         apiData: payload
       }
-      case "SET_TOUCH_MENU_VALUE":
-        return {
-          ...state,
-          touchMenuValue: payload
-        }
+    case "SET_TOUCH_MENU_VALUE":
+      return {
+        ...state,
+        touchMenuValue: payload
+      }
+    case "SET_DROPDOWN_VALUE":
+      return {
+        ...state,
+        dropDownValue: payload
+      }
     default:
       return state
   }

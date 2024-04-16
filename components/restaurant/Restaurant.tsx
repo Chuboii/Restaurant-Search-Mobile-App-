@@ -4,11 +4,16 @@ import Stars from "../stars/Stars"
 import {colors} from "../../utils/colors/colors"
 import { FontAwesome } from '@expo/vector-icons';
 
-const Restaurant = ({name, image, reviewCount, ratings}) => {
+const Restaurant = ({name, image, reviewCount, ratings, navigation, id }) => {
+  
+  
+  const navigateToBusinessDetails= () => navigation.navigate("business", {id})
   
   return (
-    <TouchableOpacity style={styles.container}>
-    <Image style={styles.img} source={{uri:image}}/>
+    <TouchableOpacity style={styles.container}
+    onPress={navigateToBusinessDetails}
+    >
+    <Image style={styles.img} source={{uri:image ? image : "https://www.svgheart.com/wp-content/uploads/2020/08/coffee-cup-free-svg-file.png"}}/>
     
     <View style={styles.wrapper}>
     <Text style={styles.title}>{name}</Text>

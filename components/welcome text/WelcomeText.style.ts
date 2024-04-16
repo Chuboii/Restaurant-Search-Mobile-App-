@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     textTransform:"capitalize"
   },
   text:{
-    fontSize:40,
+    fontSize:45,
     color: colors.primary,
     textTransform:"capitalize"
   }

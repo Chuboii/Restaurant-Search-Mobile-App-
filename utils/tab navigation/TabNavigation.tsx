@@ -12,25 +12,32 @@ const Tab = createBottomTabNavigator();
 
 export default function TabNavigation() {
   return (
-      <Tab.Navigator screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+      <Tab.Navigator
+      screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
 
-          if (route.name === 'home') {
-            iconName = focused ? 'home' : 'home';
-          } else if (route.name === 'search') {
-            iconName = focused ? 'search' : 'search';
-          }
-          else if(route.name === "settings"){
-            iconName = focused ? "settings" : "settings"
-          }
-          
-          return <Feather name={iconName} size={size} color={color} />
-        },
-      }), {headerShown:false}}>
+            if (route.name === 'home') {
+              iconName = focused
+                ? 'home'
+                : 'home';
+            } else if (route.name === 'search') {
+              iconName = focused ? 'search' : 'search';
+            }else if (route.name === 'settings') {
+              iconName = focused ? 'settings' : 'settings';
+            }
+
+
+            return <Feather name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+          headerShown:false
+        })}
+      >
         <Tab.Screen name="home" component={HomeScreen} />
         <Tab.Screen name="search" component={SearchScreen} />
-        <Tab.Screen name="settings" component={SettingsScreen} />
+     <Tab.Screen name="settings" component={SettingsScreen} />
       </Tab.Navigator>
   )
 }

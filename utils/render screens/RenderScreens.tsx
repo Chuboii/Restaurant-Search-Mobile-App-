@@ -6,6 +6,9 @@ import NoInternetScreen from "../../screens/no internet/NoInternetScreen"
 import SearchScreen from "../../screens/search/SearchScreen"
 import TabNavigation from "../../utils/tab navigation/TabNavigation"
 import SettingsScreen from "../../screens/settings/SettingsScreen"
+import BusinessScreen from "../../screens/business/BusinessScreen"
+
+
 const Stack = createNativeStackNavigator()
 
 const RenderScreens = () => {
@@ -22,6 +25,8 @@ const RenderScreens = () => {
        <Stack.Screen name="settings"
             component={SettingsScreen}/>
               <Stack.Screen name="noInternet" component={NoInternetScreen}/>
+     <Stack.Screen name="business"
+             component={BusinessScreen}/>
           </Stack.Navigator>
    </NavigationContainer>
   )

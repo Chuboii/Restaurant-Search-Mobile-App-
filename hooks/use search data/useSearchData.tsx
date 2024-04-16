@@ -11,16 +11,17 @@ export default () => {
 
   const onSearchSubmit = async (searchValue, navigation)=> {
       try {
-  
+    if(searchValue){
           const response = await Yelp.get("/search", {
             params: {
               term: searchValue,
-              limit: 10,
+              limit: 5,
               location:"san jose"
             }
           })
        //   console.log(response.data.businesses)
           dispatch({ type: "SET_SEARCH_DATA", payload: response.data.businesses })
+    }
         }
         catch (err) {
           console.log(err);
