@@ -1,41 +1,39 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
-import RNPickerSelect from 'react-native-picker-select';
 import {styles} from "./DropDown.style"
-import {DataContext} from "../../context/DataContext"
+import { DataContext } from "../../context/DataContext"
+import DropDownPicker from 'react-native-dropdown-picker';
 
-const DropDown = ({setValue, dropDownItems, selectedValue, placeholder, styling}) => {
-  const {dispatch, state} = useContext(DataContext)
-/*
+
+const DropDown = ({setValue, dropDownItems, selectedValue, placeholder, styling, reRender}) => {
+  const { dispatch, state } = useContext(DataContext)
+  const [open, setOpen] = useState(false);
+
 useEffect(() => {
-  //console.log(selectedValue)
-  dispatch({type:"SET_DROPDOWN_VALUE", payload: selectedValue})
-},[])*/
+  if (selectedValue) {
+    dispatch({ type: "SET_DROPDOWN_VALUE", payload: selectedValue })
+  }
+},[reRender])
 
+  
+  
   return (
     <View style={styles.container}>
-      <RNPickerSelect
-        onValueChange={(value) => console.log(value)}
-        items={dropDownItems}
-        placeholder={placeholder}
+      <DropDownPicker
+        searchable={true}
+        open={open}
         value={selectedValue}
+        items={dropDownItems}
+        setOpen={setOpen}
+        setValue={setValue}
+        setItems={setValue}
         style={{
-    inputAndroid: {
-      fontSize: 16,
-      paddingHorizontal: 10,
-      paddingVertical: 8,
-      color: 'black',
-      paddingRight:30
-      
-    },
-    placeholder: {
-      color: 'black'
-    },
-    iconContainer: {
-      top: 0,
-      right: 12,
-      color:"black"
-    }}}
+          backgroundColor:"transparent"
+        }}
+        theme="LIGHT"
+        multiple={false}
+        mode="BADGE"
+        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
       />
     </View>
   );

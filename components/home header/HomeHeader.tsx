@@ -6,7 +6,8 @@ import {useState} from "react"
 import {styles} from "./HomeHeader.style"
 
 
-const dropDownItems = [{
+const dropDownItems = [
+  {
   label:"New York", value: "New York"
 },
 {
@@ -24,25 +25,28 @@ const dropDownItems = [{
 ]
 export default function HomeHeader(){
   const [selectedValue, setSelectedValue] = useState(null)
+  const [reRender, setReRender] = useState(false)
   
-  const onChangeValue = (value) => {
+  const onChangeValue = (value: string) => {
     setSelectedValue(value)
+    setReRender(!reRender)
   }
   
-  
-  
+
   return(
     <View style={styles.container}>
-    <EvilIcons name="location" size={24} color="black"style={styles.icon}/>
+      
+    <EvilIcons name="location"  color="black"style={styles.icon}/>
     
-  <DropDown 
-  selectedValue={onChangeValue}
+      <DropDown 
+        reRender={reRender}
+  selectedValue={selectedValue}
   setValue={onChangeValue}
   dropDownItems={dropDownItems}
   placeholder={{label:"Select a location", value:""}}
   styling=""
   />
-<MaterialIcons name="favorite-border" size={24} color="black" />
+<MaterialIcons style={styles.icon} name="favorite-border" size={24} color="black" />
 
   </View>
     )

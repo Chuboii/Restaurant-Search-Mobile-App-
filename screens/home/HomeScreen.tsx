@@ -17,18 +17,18 @@ import HomeHeader from "../../components/home header/HomeHeader"
 
 const HomeScreen = ({ navigation }) => {
   const { state, dispatch } = useContext(DataContext)
-/*
 
-useEffect(() => {
-  
+
+  useEffect(() => {
+
   const retriveDataFromApi = async () => {
      try{
-    console.log("rerender")
+   
        const response = await Yelp.get("/search", {
          params:{
            term:state.touchMenuValue ? state.touchMenuValue : "all",
            limit:2,
-           location: "London"
+           location: state.dropDownValue ? state.dropDownValue : 'san jose'
            
          }
        })
@@ -43,7 +43,7 @@ useEffect(() => {
    retriveDataFromApi()
    
 },[state.touchMenuValue, state.dropDownValue])
-*/
+
 /*
   useEffect(() => {
     if (state.isNetworkConnected) {
