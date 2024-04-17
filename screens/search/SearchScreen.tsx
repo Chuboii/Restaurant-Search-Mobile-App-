@@ -1,4 +1,4 @@
-import { View, Text, TextInput, FlatList } from 'react-native'
+import { View, Text, TextInput, FlatList, Image } from 'react-native'
 import React, {useMemo, useCallback, useContext, useEffect, useState } from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import useSearchData from '../../hooks/use search data/useSearchData';
@@ -14,7 +14,7 @@ const SearchScreen = ({navigation}) => {
     const [searchValue, setSearchValue] = useState("")
     const [onSearchSubmit] = useSearchData()
     const { state, dispatch } = useContext(DataContext)
-   
+  const [removeSearchResult, setRemoveSearchResult] = useState(false)
    const memoizedDispatch = useCallback(
     (action) => {
      return dispatch(action)
@@ -25,6 +25,11 @@ const SearchScreen = ({navigation}) => {
       memoizedDispatch({ type: "SET_SEARCH_DATA", payload: "" });
     }, [memoizedDispatch])
   );
+
+  // useEffect(() => {
+  //   const isRemoved = removeSearchResult ? styles.opacity : 1
+  //   setRemoveSearchResultVar(isRemoved)
+  // } , [removeSearchResult])
   
 
   /*
@@ -40,7 +45,8 @@ const SearchScreen = ({navigation}) => {
 
     */
     const onChangeText = (value: string) => {
-        setSearchValue(value)
+      setSearchValue(value)
+      setRemoveSearchResult(true)
     }
     
 
@@ -52,18 +58,26 @@ const SearchScreen = ({navigation}) => {
         onChangeInputText={onChangeText}
         onTextSubmit={() => onSearchSubmit(searchValue, navigation)}
       />
-      {state.searchData && <Text style={styles.title}> Search results for <Text
-      style={styles.bold}>{searchValue}</Text> </Text>}
+      {
+        state.searchData && <Text style={styles.title}> Search results for <Text
+      style={styles.bold}>{searchValue}</Text> </Text> }
       <View style={styles.wrapper}>
-      {state.searchData ?
+        {
+          state.searchData ?
         <FlatList
           data={state.searchData}
           numColumns={2}
           showsVerticalScrollIndicator={false}
           keyExtractor={(data) => data.id}
-          renderItem={({ item }) => <Restaurant name={item.name} image={item.image_url} reviewCount={item.review_count} ratings={item.rating} />}
-        /> : <Text>"Nothing to see here..." </Text>
-      }
+            renderItem={({ item }) =>
+              <Restaurant id={item.id} name={item.name} image={item.image_url} navigation={navigation} ratings={item.rating} />}
+          />
+            :
+            <View style={styles.wrap}>
+            <Image source={require("../../assets/images__7_-removebg-preview.png")} style={styles.image} />
+           <Text style={styles.text}>Search that business Here</Text>
+          </View> 
+}
       </View>
     </SafeAreaView>
   )

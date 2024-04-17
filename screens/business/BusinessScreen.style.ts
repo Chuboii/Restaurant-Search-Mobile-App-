@@ -50,6 +50,15 @@ export const styles = StyleSheet.create({
     justifyContent:"space-between",
     marginBottom:10
   },
+  box1: {
+    
+  },
+  wrap2: {
+    
+  },
+  text1: {
+    
+  },
   box:{
     padding:10
   },
@@ -112,13 +121,13 @@ width:25,
     fontSize:17,
     marginLeft:6,
     fontWeight:"900",
-    color:"orangered"
+    color:"black"
   },
   wrap1:{
     backgroundColor:"transparent",
     paddingVertical:10,
-    borderColor:"orangered",
-    borderWidth:2,
+    borderColor:"black",
+    borderWidth:.5,
     borderRadius:30,
     alignItems:"center",
     paddingHorizontal:20

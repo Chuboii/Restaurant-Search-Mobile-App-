@@ -1,4 +1,4 @@
-import {styles} from "./BusinessScreen.style.ts"
+import {styles} from "./BusinessScreen.style"
 import {Text, View,FlatList, Image} from "react-native"
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useRoute } from '@react-navigation/native';
@@ -87,37 +87,41 @@ const BusinessScreen = ({navigation}) => {
     </View>
     
   
-  <View style={styles.pad}>
+      <View style={styles.pad}>
+ 
   
- <View>
-  <View>
-  <View>
+        <View style={styles.wrap}>
+      <View>
+  <View style={styles.box1}>
+  <View style={styles.wrapBox}>
   <Text> Category </Text>
   </View>
-  <Text> {data ? data.categories[0].title : ""} </Text>
+  <Text style={styles.text}> {data ? data.categories[0].title : ""} </Text>
   </View>
   
-  <View>
-  <View>
-  <Text> Country</Text>
+          <View style={styles.box1}>
+            <View style={styles.wrapBox}>
+  <Text style={styles.text1}> Country</Text>
   </View>
-    <Text> {data ? data.location.country : ""} </Text>
+    <Text style={styles.text}> {data ? data.location.country : ""} </Text>
     </View>
-   
-  <View>
-  <View>
-  <Text>City </Text>
+   </View>
+          
+      <View>
+  <View style={styles.box1}>
+  <View style={styles.wrapBox}>
+  <Text style={styles.text1}>City </Text>
   </View>
-<Text> {data ? data.location.city : ""} </Text>
+<Text style={styles.text}> {data ? data.location.city : ""} </Text>
   </View>
   
  
-  <View>
-  <View>
-  <Text> Review Count </Text>
+  <View style={styles.box1}>
+  <View style={styles.wrapBox}>
+  <Text style={styles.text1}> Review Count </Text>
   </View>
-  <Text>{data ? data.review_count : ""} </Text>
-  
+  <Text style={styles.text}>{data ? data.review_count : ""} </Text>
+  </View>
   </View>
 </View>
 {/*<View>

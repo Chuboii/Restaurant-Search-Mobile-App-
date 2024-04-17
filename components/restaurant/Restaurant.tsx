@@ -4,7 +4,7 @@ import Stars from "../stars/Stars"
 import {colors} from "../../utils/colors/colors"
 import { FontAwesome } from '@expo/vector-icons';
 
-const Restaurant = ({name, image, reviewCount, ratings, navigation, id }) => {
+const Restaurant = ({name, image, ratings, navigation, id }) => {
   
   
   const navigateToBusinessDetails= () => navigation.navigate("business", {id})

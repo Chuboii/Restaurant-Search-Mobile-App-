@@ -18,5 +18,22 @@ export const styles = StyleSheet.create({
       fontSize:35,
       color:"orangered",
       fontWeight:"bold"
-    }
+  },
+  opacity: {
+      opacity:0
+    },
+  image: {
+    alignSelf: "center",
+  },
+  wrap: {
+    top:30,
+    flexDirection: "column",
+  },
+  text: {
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+    textTransform: "capitalize",
+    top:30
+  }
 })

@@ -16,11 +16,17 @@ export default () => {
             params: {
               term: searchValue,
               limit: 5,
-              location:"san jose"
+              location: state.dropDownValue ? state.dropDownValue : 'san jose'
             }
           })
-       //   console.log(response.data.businesses)
-          dispatch({ type: "SET_SEARCH_DATA", payload: response.data.businesses })
+      if (response.data.businesses) {
+        //   console.log(response.data.businesses)
+        dispatch({type:"IS_SEARCH_RESULTS", payload:true})
+        dispatch({ type: "SET_SEARCH_DATA", payload: response.data.businesses })
+      }
+      else {
+        dispatch({type:"IS_SEARCH_RESULTS", payload:false})
+      }
     }
         }
         catch (err) {
