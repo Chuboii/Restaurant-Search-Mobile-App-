@@ -6,6 +6,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
 
+
 const settingsTabs = [{
   name: "Favorites",
   icon: "hearto"
@@ -40,8 +41,9 @@ const SettingsScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
 
-    
+
     <View style={styles.lists}>
+
     <FlatList 
     keyExtractor={(data) => data.name}
      data={settingsTabs}

@@ -62,6 +62,7 @@ const HomeScreen = ({ navigation }) => {
     <>
       <SafeAreaView style={styles.main}>
       <HomeHeader/>
+
       <WelcomeText/>
         <View style={styles.container}>
          
@@ -72,7 +73,7 @@ const HomeScreen = ({ navigation }) => {
         </View>
         <QuickAccess />
     
-    
+
   <View style={styles.wrapper}>
 
         {state.apiData ? <FlatList
@@ -95,7 +96,7 @@ const HomeScreen = ({ navigation }) => {
     numColumns={2}
     ListHeaderComponent={
     <>
-          <BillBoard/>
+         <BillBoard/>
         <Text style={styles.title}> Businesses</Text>
         </>
     }

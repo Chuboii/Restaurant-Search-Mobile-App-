@@ -14,7 +14,8 @@ const INITIAL_SEARCH_DATA = {
   isError: false,
   isLoading: false,
   isNetworkConnected: false,
-  dropDownValue: null
+  dropDownValue: null,
+  businessDetails: null
 }
 
 const searchReducer = (state, action) => {
@@ -63,6 +64,11 @@ const searchReducer = (state, action) => {
       return {
         ...state,
         dropDownValue: payload
+      }
+    case "SET_BUSINESS_DETAILS":
+      return {
+        ...state, 
+        businessDetails: payload
       }
     default:
       return state

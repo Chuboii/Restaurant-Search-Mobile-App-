@@ -27,6 +27,7 @@ useEffect(() => {
         setOpen={setOpen}
         setValue={setValue}
         setItems={setValue}
+        placeholder={"San Jose"}
         style={{
           backgroundColor:"transparent"
         }}

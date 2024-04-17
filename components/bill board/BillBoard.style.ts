@@ -4,7 +4,7 @@ import {colors} from "../../utils/colors/colors"
 
 const screenWidth = Dimensions.get('window').width;
 
-export const styles = StyleSheet.create({
+export const stylesbill = StyleSheet.create({
   container:{
    marginTop:30,
    marginHorizontal:5
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     height:200
   },
   activePaginationDot:{
-    backgroundColor:colors.secondary
+    backgroundColor:colors.tertiary
   },
   paginationDot:{
     backgroundColor:"rgba(255,255,255,.8)"
