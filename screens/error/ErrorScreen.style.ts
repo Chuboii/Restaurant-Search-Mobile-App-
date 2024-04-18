@@ -14,11 +14,11 @@ export const styles = StyleSheet.create({
     },
     text: {
         fontSize: 17,
-        color: colors.TEXT_COLOR,
+        color: colors.gray,
         marginTop:10
     },
     span: {
-        color: colors.DARK_COLOR_BLACK,
+        color: colors.black,
         fontWeight:"bold"
     },
     resolve: {
@@ -46,14 +46,14 @@ export const styles = StyleSheet.create({
         
     },
     btn: {
-        backgroundColor: colors.PRIMARY_COLOR,
+        backgroundColor: colors.tertiary,
         paddingVertical: 17,
         borderRadius: 15,
         marginBottom: 10,
         marginTop:20
     },
     btnText: {
-        color: colors.LIGHT_COLOR,
+        color: colors.white,
         fontWeight:"bold",
         textAlign: 'center',
         fontSize:17

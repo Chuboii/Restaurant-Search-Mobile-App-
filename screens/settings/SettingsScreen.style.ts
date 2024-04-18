@@ -59,5 +59,26 @@ export const styles = StyleSheet.create({
   separator: {
     height: 1,
     backgroundColor: '#CED0CE',
+  },
+  signin:{
+    marginTop:70,
+    color: "white",
+    padding:10,
+    borderRadius:5,
+  
+  },
+  text1:{
+    color:"orangered",
+    marginLeft:10
+  },
+  btn:{
+    marginTop:10,
+    borderColor:"orangered",
+    borderWidth:1,
+    color: "white",
+    padding:10,
+    borderRadius:5,
+    flexDirection:"row",
+    alignItems:"center"
   }
 })

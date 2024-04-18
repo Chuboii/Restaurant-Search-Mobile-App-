@@ -5,7 +5,8 @@ import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
-
+import {DataContext} from "../../context/DataContext"
+import {useContext} from "react"
 
 const settingsTabs = [{
   name: "Favorites",
@@ -35,6 +36,7 @@ const ItemSeparator = () => <View style={styles.separator} />;
 
 const SettingsScreen = ({navigation}) => {
   const route = useRoute()
+  const {state} = useContext(DataContext)
   
   //console.log(route.name)
   
@@ -58,14 +60,28 @@ const SettingsScreen = ({navigation}) => {
     source={require("../../assets/icon.png")}/>
     </View>
     
-    <View style={styles.wrapper}>
+ {state.userData ?
+ <View style={styles.wrapper}>
     <View style={styles.profile}>
     <AntDesign name="user" size={24} color="black" style={styles.icon} /> 
   </View> 
     <Text style={styles.name}> Joe Doe </Text>
     <Text style={styles.email}> joedoe@gmail.com </Text>
+  </View>  :
+  <View style={styles.signin}>
+  <TouchableOpacity style={styles.btn}>
+     <AntDesign name={"google"} size={20}
+     color="orangered"/>
+      <Text style={styles.text1}> Sign in with Google </Text>
+    </TouchableOpacity>
+
+  <TouchableOpacity style={styles.btn}>
+     <AntDesign name="mail" size={20} color="orangered"  />
+      <Text style={styles.text1}> Sign in with Email </Text>
+    </TouchableOpacity>
   </View>
-    </View>
+ }
+    </View> 
      </>
      }
      renderItem={({item}) => <TouchableOpacity style={styles.list}> 

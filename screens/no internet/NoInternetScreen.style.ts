@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
         fontSize:17
     },
     btn: {
-        backgroundColor: colors.PRIMARY_COLOR,
+        backgroundColor: colors.tertiary,
         padding: 10,
         paddingVertical:20,
         width: "100%",

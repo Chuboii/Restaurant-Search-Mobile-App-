@@ -19,10 +19,14 @@ export const styles = StyleSheet.create({
   },
   back:{
     position:"absolute",
-    top:10,
+    top:40,
     left:10,
     fontSize:30,
-    zIndex:1
+    zIndex:1,
+    backgroundColor:"black",
+    color:"white",
+    borderRadius:50,
+    padding:5
   },
   icon:{
     color: colors.tertiary,
@@ -33,7 +37,8 @@ export const styles = StyleSheet.create({
     fontSize:20
   },
   cash:{
-    backgroundColor:"lightblue",
+    borderColor:"black",
+    borderWidth:.5,
     color:colors.light,
     fontWeight:"bold",
     fontSize:19,
@@ -41,8 +46,10 @@ export const styles = StyleSheet.create({
     borderRadius:5
   },
   text:{
-    fontSize:17,
-    textTransform:"capitalize"
+    fontSize:18,
+    textTransform:"capitalize",
+    fontWeight:"bold",
+    marginTop:10
   },
   wrap:{
     flexDirection:"row",
@@ -51,13 +58,18 @@ export const styles = StyleSheet.create({
     marginBottom:10
   },
   box1: {
-    
+    marginBottom:20,
+    paddingHorizontal:10
   },
   wrap2: {
     
   },
   text1: {
-    
+    fontSize:18,
+    marginTop:5,
+    textTransform:"capitalize",
+    fontWeight:'bold',
+    marginLeft:10
   },
   box:{
     padding:10
@@ -112,7 +124,18 @@ width:25,
   wrapBox:{
     flexDirection:"row",
     alignItems:"center",
-    padding:10
+    padding:10,
+    borderColor:"black",
+    borderWidth:.5,
+    borderRadius:5,
+    
+    
+  },
+  wrapBox1:{
+    flexDirection:"row",
+    alignItems:"center",
+    padding:10,
+    marginBottom:25
   },
   wicon:{
     color:"orangered"

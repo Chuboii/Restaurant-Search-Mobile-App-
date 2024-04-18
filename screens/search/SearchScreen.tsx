@@ -8,21 +8,37 @@ import {styles} from "./SearchScreen.style"
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Restaurant from '../../components/restaurant/Restaurant';
 
-import { useFocusEffect } from '@react-navigation/native'; 
+import { useFocusEffect, useRoute } from '@react-navigation/native'; 
 
 const SearchScreen = ({navigation}) => {
     const [searchValue, setSearchValue] = useState("")
     const [onSearchSubmit] = useSearchData()
     const { state, dispatch } = useContext(DataContext)
+  const route = useRoute()
   const [removeSearchResult, setRemoveSearchResult] = useState(false)
    const memoizedDispatch = useCallback(
     (action) => {
      return dispatch(action)
       }, [dispatch])
   
+  
   useFocusEffect(
+  
     useCallback(() => {
-      memoizedDispatch({ type: "SET_SEARCH_DATA", payload: "" });
+      if(state.isBusinessScreen){
+        //fix the consistent display of sesrvh screen after navigating from
+        //business screen
+        //console.log(state.searchData)
+        memoizedDispatch({ type: "SET_SEARCH_DATA", payload: state.searchData });
+      }
+      else{
+     memoizedDispatch({ type: "SET_SEARCH_DATA", payload: "" });
+   //   dispatch({type: "IS_SEARCH_RESULTS", payload: false})
+   dispatch({type: "IS_SEARCH_RESULTS", payload: false})
+      }
+
+    
+   setSearchValue("")
     }, [memoizedDispatch])
   );
 
@@ -32,7 +48,7 @@ const SearchScreen = ({navigation}) => {
   // } , [removeSearchResult])
   
 
-  /*
+  
   
     useEffect(() => {
         if (state.isNetworkConnected) {
@@ -43,7 +59,7 @@ const SearchScreen = ({navigation}) => {
     }
       }, [state.isNetworkConnected])
 
-    */
+    
     const onChangeText = (value: string) => {
       setSearchValue(value)
       setRemoveSearchResult(true)
@@ -56,9 +72,10 @@ const SearchScreen = ({navigation}) => {
         navigation={navigation}
         value={searchValue}
         onChangeInputText={onChangeText}
-        onTextSubmit={() => onSearchSubmit(searchValue, navigation)}
+        onTextSubmit={() => onSearchSubmit(searchValue, navigation,
+        setRemoveSearchResult)}
       />
-      {
+      {removeSearchResult ? "" :
         state.searchData && <Text style={styles.title}> Search results for <Text
       style={styles.bold}>{searchValue}</Text> </Text> }
       <View style={styles.wrapper}>
@@ -72,7 +89,9 @@ const SearchScreen = ({navigation}) => {
             renderItem={({ item }) =>
               <Restaurant id={item.id} name={item.name} image={item.image_url} navigation={navigation} ratings={item.rating} />}
           />
-            :
+            : state.noSearchResults ? <Image
+            source={require("../../assets/images__1_-removebg-preview.png")}
+            style={styles.image2} />  :
             <View style={styles.wrap}>
             <Image source={require("../../assets/images__7_-removebg-preview.png")} style={styles.image} />
            <Text style={styles.text}>Search that business Here</Text>

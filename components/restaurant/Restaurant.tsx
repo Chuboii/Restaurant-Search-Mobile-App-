@@ -3,7 +3,7 @@ import {styles} from "./Restaurant.style"
 import Stars from "../stars/Stars"
 import {colors} from "../../utils/colors/colors"
 import { FontAwesome } from '@expo/vector-icons';
-
+import LazyImage from "../lazy image/LazyImage"
 const Restaurant = ({name, image, ratings, navigation, id }) => {
   
   

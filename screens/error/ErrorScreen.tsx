@@ -2,13 +2,18 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { styles } from './ErrorScreen.style'
 import Bullets from '../../components/bullets/Bullets'
+import {DataContext} from "../../context/DataContext"
+import {useContext} from "react"
 
-const ErrorScreen = () => {
+const ErrorScreen = ({navigation}) => {
+  const {state} = useContext(DataContext)
+  const navigateToHome = () => navigation.navigate("home")
+  
   return (
       <View style={styles.container}>
           <View style={styles.wrap}>
           <Text style={[styles.span, styles.resolve]}>Something went wrong</Text>
-              <Text style={styles.text}>Error Message: </Text>
+              <Text style={styles.text}>Error Message: {state.errorMessage}</Text>
           </View>
           
           <View style={styles.wrapper}>
@@ -26,7 +31,7 @@ const ErrorScreen = () => {
           </View>
 
           <View style={styles.btnWrapper}>
-              <TouchableOpacity style={styles.btn}>
+              <TouchableOpacity onPress={navigateToHome} style={styles.btn}>
                   <Text style={styles.btnText}>Return Home</Text>
               </TouchableOpacity>
 

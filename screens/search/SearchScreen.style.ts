@@ -35,5 +35,9 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     textTransform: "capitalize",
     top:30
+  },
+  image2:{
+    alignSelf: "center",
+    top:70
   }
 })

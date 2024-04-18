@@ -16,7 +16,9 @@ const INITIAL_SEARCH_DATA = {
   isNetworkConnected: false,
   dropDownValue: null,
   businessDetails: null,
-  noSearchResults: false
+  noSearchResults: false,
+  isBusinessScreen: false,
+  userData: null
 }
 
 const searchReducer = (state, action) => {
@@ -68,14 +70,24 @@ const searchReducer = (state, action) => {
       }
     case "SET_BUSINESS_DETAILS":
       return {
-        ...state, 
+        ...state,
         businessDetails: payload
       }
-      case "IS_SEARCH_RESULTS":
-        return {
-          ...state, 
-          noSearchResults: payload
-        }
+    case "IS_SEARCH_RESULTS":
+      return {
+        ...state,
+        noSearchResults: payload
+      }
+    case "IS_BUSINESS_SCREEN":
+      return {
+        ...state,
+        isBusinessScreen: payload
+      }
+    case "SET_USER_DATA":
+      return{
+        ...state,
+        userData: payload
+      }
     default:
       return state
   }

@@ -13,21 +13,29 @@ import QuickAccess from "../../components/quick access/QuickAccess"
 import WelcomeText from "../../components/welcome text/WelcomeText"
 import BillBoard from "../../components/bill board/BillBoard"
 import HomeHeader from "../../components/home header/HomeHeader"
+import Spinner from "../../components/spinner/Spinner"
 
 
 const HomeScreen = ({ navigation }) => {
   const { state, dispatch } = useContext(DataContext)
+const [loading, setLoading] = useState(false)
+const [dataLimit, setDataLimit] = useState(6)
+const [loadingEndData, setLoadingEndData] = useState(false)
 
-
-  useEffect(() => {
-
-  const retriveDataFromApi = async () => {
+const retriveDataFromApi = async (prevent) => {
      try{
-   
+       if(prevent === "bottom"){
+         setLoading(false)
+         setLoadingEndData(true)
+       }
+       else{
+       setLoading(true)
+setLoadingEndData(false)
+       }
        const response = await Yelp.get("/search", {
          params:{
            term:state.touchMenuValue ? state.touchMenuValue : "all",
-           limit:2,
+           limit:dataLimit,
            location: state.dropDownValue ? state.dropDownValue : 'san jose'
            
          }
@@ -35,16 +43,34 @@ const HomeScreen = ({ navigation }) => {
        
     // console.log(response.data.businesses)
        dispatch({type:"SET_API_DATA", payload:response.data.businesses})
+       setLoading(false)
+       setLoadingEndData(false)
      }
      catch(err){
+       setLoading(false)
+setLoadingEndData(false)
+       if(err.message === "Request failed with status code 504"){
+         navigation.navigate("error")
+         dispatch({type:"SET_ERROR_MESSAGE", payload: "Connection Timeout"})
+       }
+       else if(err.message === "Cannot read property 'id' of undefined]"){
+         navigation.navigate("error")
+         dispatch({type:"SET_ERROR_MESSAGE", payload: "Something went wrong. Please try agin"})
+       }
+       else{
+      dispatch({type:"SET_ERROR_MESSAGE", payload: "Server Timeout"})
+        navigation.navigate("error")
+       }
        console.log(err)
      }
    }
-   retriveDataFromApi()
+   
+  useEffect(() => {
+
+   retriveDataFromApi("top")
    
 },[state.touchMenuValue, state.dropDownValue])
 
-/*
   useEffect(() => {
     if (state.isNetworkConnected) {
       navigation.navigate("home")
@@ -53,16 +79,22 @@ const HomeScreen = ({ navigation }) => {
     navigation.navigate("noInternet")
 }
   }, [state.isNetworkConnected])
-*/
+
 
  const navigateToSearchScreen = () => navigation.navigate("search")
 
+const handleEndReached = () => {
+    if (!loadingEndData) {
+      
+      setDataLimit(prevLimit => prevLimit + 6);
+      retriveDataFromApi("bottom");
+    }
+  }
 
   return (
     <>
       <SafeAreaView style={styles.main}>
       <HomeHeader/>
-
       <WelcomeText/>
         <View style={styles.container}>
          
@@ -72,11 +104,10 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <QuickAccess />
-    
 
   <View style={styles.wrapper}>
 
-        {state.apiData ? <FlatList
+        {loading ? <Spinner absolute={"relative"} mb={50}/> :<FlatList
             showsVerticalScrollIndicator={false}
             data={state.apiData}
             renderItem={({ item }) => {
@@ -94,14 +125,18 @@ const HomeScreen = ({ navigation }) => {
   )}}
     keyExtractor={(data) => data.id}
     numColumns={2}
+    onEndReached={handleEndReached}
+      onEndReachedThreshold={0.1}
+      ListFooterComponent={loadingEndData && <
+      Spinner absolute={"absolute"} mb={10}/>}
     ListHeaderComponent={
     <>
-         <BillBoard/>
+         <BillBoard navigation={navigation}/>
         <Text style={styles.title}> Businesses</Text>
         </>
     }
-          /> : <Text>loading</Text>}
-        </View>
+          />  }
+        </View> 
       </SafeAreaView>
     </>
   )
