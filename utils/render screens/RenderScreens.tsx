@@ -8,6 +8,7 @@ import TabNavigation from "../../utils/tab navigation/TabNavigation"
 import SettingsScreen from "../../screens/settings/SettingsScreen"
 import BusinessScreen from "../../screens/business/BusinessScreen"
 import LoadScreen from "../../screens/load/LoadScreen"
+import FavoriteScreen from "../../screens/favorites/FavoriteScreen"
 
 const Stack = createNativeStackNavigator()
 
@@ -30,6 +31,8 @@ const RenderScreens = () => {
               <Stack.Screen name="noInternet" component={NoInternetScreen}/>
      <Stack.Screen name="business"
           component={BusinessScreen} />
+         <Stack.Screen name="favorites"
+          component={FavoriteScreen} />
         
           </Stack.Navigator>
    </NavigationContainer>

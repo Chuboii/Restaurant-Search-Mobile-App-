@@ -97,7 +97,7 @@ const handleEndReached = () => {
   return (
     <>
       <SafeAreaView style={styles.main}>
-      <HomeHeader/>
+      <HomeHeader navigation={navigation}/>
       <WelcomeText/>
         <View style={styles.container}>
          

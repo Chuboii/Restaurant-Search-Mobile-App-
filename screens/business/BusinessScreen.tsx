@@ -14,12 +14,13 @@ import { Ionicons } from '@expo/vector-icons';
 import MySwiper from "../../components/swiper/Swiper"
 import { AirbnbRating } from 'react-native-ratings';
 import Spinner from '../../components/spinner/Spinner';
+import useCache from "../../hooks/use cache/useCache";
+import { colors } from "../../utils/colors/colors";
 
 const BusinessScreen = ({navigation}) => {
   const { state, dispatch } = useContext(DataContext)
   const route = useRoute()
- 
-  
+ const [storeData, extractData] = useCache()
  const [data, setData] = useState(null)
  const [reRender, setReRender] = useState(false)
  
@@ -74,6 +75,8 @@ const openExternalLink = () => {
   }
   
 }
+  
+
 
 if(data){
   return (
@@ -107,17 +110,17 @@ if(data){
         size={20}
                     isDisabled={true}
         showRating={false}
-        selectedColor={'orangered'}
+        selectedColor={colors.tertiary}
       />
 : ""}
 
     <Text style={styles.text}> ({data ? data.rating : "" })</Text>
     </View>
-    <View style={styles.fav}>
-    <MaterialIcons name="favorite-border" size={30} style={styles.heart}
-    color="red" />
+    <TouchableOpacity onPress={() => storeData("data", data)} style={styles.fav}>
+                <MaterialIcons name="favorite-border" size={30} style={styles.heart}
+                  color={colors.tertiary} />
 
-    </View>
+    </TouchableOpacity>
     </View>
     </View>
     </View>
