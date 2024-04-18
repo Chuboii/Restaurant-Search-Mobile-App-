@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator();
 
 export default function TabNavigation() {
   return (
-      <Tab.Navigator
+    <Tab.Navigator
       screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -26,8 +26,6 @@ export default function TabNavigation() {
             }else if (route.name === 'settings') {
               iconName = focused ? 'settings' : 'settings';
             }
-
-
             return <Feather name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: 'tomato',

@@ -3,7 +3,7 @@ import { View, Button, StyleSheet } from 'react-native';
 import { Chase } from 'react-native-animated-spinkit'
 import {colors} from "../../utils/colors/colors"
 
-const mySpinner = ({absolute = "absolute", mb}) => {
+const Spinner = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const toggleSpinner = () => {
@@ -22,8 +22,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    position:"relative",
-    bottom:0
   },
   spinner: {
     marginBottom: 50,
@@ -33,4 +31,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default mySpinner;
+export default Spinner;

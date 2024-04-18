@@ -1,5 +1,7 @@
-import {StyleSheet} from "react-native"
+import {Dimensions, StyleSheet} from "react-native"
 import {colors} from "../../utils/colors/colors"
+
+const screenWidth = Dimensions.get("window").width
 
 export const styles = StyleSheet.create({
     container:{
@@ -25,7 +27,8 @@ export const styles = StyleSheet.create({
       textTransform:'capitalize'
     },
     image:{
-      height:220
+      height: 220,
+      width:screenWidth
     },
     profile:{
       width:150,
@@ -68,12 +71,12 @@ export const styles = StyleSheet.create({
   
   },
   text1:{
-    color:"orangered",
+    color:"black",
     marginLeft:10
   },
   btn:{
     marginTop:10,
-    borderColor:"orangered",
+    borderColor:"black",
     borderWidth:1,
     color: "white",
     padding:10,

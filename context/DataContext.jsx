@@ -18,7 +18,8 @@ const INITIAL_SEARCH_DATA = {
   businessDetails: null,
   noSearchResults: false,
   isBusinessScreen: false,
-  userData: null
+  userData: null,
+  reloadDataFunction:null
 }
 
 const searchReducer = (state, action) => {
@@ -88,6 +89,11 @@ const searchReducer = (state, action) => {
         ...state,
         userData: payload
       }
+      case "SET_RELOAD_DATA_FUNCTION":
+        return{
+          ...state,
+          reloadDataFunction: payload
+        }
     default:
       return state
   }

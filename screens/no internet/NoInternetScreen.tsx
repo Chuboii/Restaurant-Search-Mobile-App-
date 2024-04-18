@@ -4,9 +4,10 @@ import { styles } from './NoInternetScreen.style'
 import { DataContext } from '../../context/DataContext'
 
 const NoInternetScreen = ({navigation}) => {
-    const { state } = useContext(DataContext)
+    const { state, dispatch } = useContext(DataContext)
     
     const navigateToHome = () => {
+        state.reloadDataFunction()
         if (state.isNetworkConnected) {
             navigation.navigate("home")
         }

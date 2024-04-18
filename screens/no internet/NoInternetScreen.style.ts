@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         padding:20
     },
     header: {
-        color: colors.PRIMARY_COLOR,
+        color: colors.primary,
         fontWeight: 'bold',
         fontSize:30
     },

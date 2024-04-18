@@ -7,30 +7,30 @@ import { Entypo } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
 import {DataContext} from "../../context/DataContext"
 import {useContext} from "react"
+import { FontAwesome5, Feather } from '@expo/vector-icons';
 
 const settingsTabs = [{
   name: "Favorites",
-  icon: "hearto"
+  icon: "heart"
 }, 
 {
   name: "about",
-  icon: "infocirlceo"
+  icon: "info"
 }, 
 {
-  name:"clear cache",
-  icon: "cached",
-  materialIcon: "materialIcon"
+  name: "clear cache",
+  icon: "inbox"
 },
 {
-  name:"change location",
-  icon:"location",
-  entypo:"entypo"
+  name: "change location",
+  icon: "map-marker"
 },
 {
-  name:"sign in",
-  icon:"login"
+  name: "sign in",
+  icon: "sign-in-alt"
 }
 ]
+
 const ItemSeparator = () => <View style={styles.separator} />;
 
 
@@ -57,7 +57,7 @@ const SettingsScreen = ({navigation}) => {
     <View style={styles.wrap}>
     <Image
     style={styles.image}
-    source={require("../../assets/icon.png")}/>
+    source={require("../../assets/download (7).jpeg")}/>
     </View>
     
  {state.userData ?
@@ -71,12 +71,12 @@ const SettingsScreen = ({navigation}) => {
   <View style={styles.signin}>
   <TouchableOpacity style={styles.btn}>
      <AntDesign name={"google"} size={20}
-     color="orangered"/>
+     color="black"/>
       <Text style={styles.text1}> Sign in with Google </Text>
     </TouchableOpacity>
 
   <TouchableOpacity style={styles.btn}>
-     <AntDesign name="mail" size={20} color="orangered"  />
+     <AntDesign name="mail" size={20} color="black"  />
       <Text style={styles.text1}> Sign in with Email </Text>
     </TouchableOpacity>
   </View>
@@ -84,13 +84,10 @@ const SettingsScreen = ({navigation}) => {
     </View> 
      </>
      }
-     renderItem={({item}) => <TouchableOpacity style={styles.list}> 
-     {item.materialIcon === "materialIcon" ? <MaterialIcons name={item.icon} size={20}
-     color="black"/> : item.entypo === "entypo" ? <Entypo name={item.icon}
-     size={20} color="black"/> : <AntDesign name={item.icon} size={20}
-     color="black"/>}
-     <Text style={styles.text}> {item.name} </Text>
-     </TouchableOpacity> }
+     renderItem={({item}) =>  <TouchableOpacity style={styles.list}> 
+     <FontAwesome5 name={item.icon} size={20} color="black" />
+     <Text style={styles.text}>{item.name}</Text>
+   </TouchableOpacity> }
     />
     </View>
     </SafeAreaView>

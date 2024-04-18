@@ -22,7 +22,7 @@ const [loading, setLoading] = useState(false)
 const [dataLimit, setDataLimit] = useState(6)
 const [loadingEndData, setLoadingEndData] = useState(false)
 
-const retriveDataFromApi = async (prevent) => {
+const retriveDataFromApi = async (prevent : string) => {
      try{
        if(prevent === "bottom"){
          setLoading(false)
@@ -57,23 +57,26 @@ setLoadingEndData(false)
          navigation.navigate("error")
          dispatch({type:"SET_ERROR_MESSAGE", payload: "Something went wrong. Please try agin"})
        }
+       else if (err.message === "Network Error") {
+        navigation.navigate("noInternet")
+         }
        else{
       dispatch({type:"SET_ERROR_MESSAGE", payload: "Server Timeout"})
         navigation.navigate("error")
        }
-       console.log(err)
+       console.log(err + "tt")
      }
    }
    
   useEffect(() => {
 
-   retriveDataFromApi("top")
-   
+    retriveDataFromApi("top")
+    dispatch({type:"SET_RELOAD_DATA_FUNCTION", payload: retriveDataFromApi})
 },[state.touchMenuValue, state.dropDownValue])
 
   useEffect(() => {
     if (state.isNetworkConnected) {
-      navigation.navigate("home")
+      navigation.navigate("TabNavigation")
   }
   else {
     navigation.navigate("noInternet")
@@ -107,7 +110,7 @@ const handleEndReached = () => {
 
   <View style={styles.wrapper}>
 
-        {loading ? <Spinner absolute={"relative"} mb={50}/> :<FlatList
+        {loading ? <Spinner/> :<FlatList
             showsVerticalScrollIndicator={false}
             data={state.apiData}
             renderItem={({ item }) => {
@@ -117,7 +120,6 @@ const handleEndReached = () => {
               <Restaurant
                 id={item.id}
                 name={item.name}
-                reviewCount={item.review_count}
                 ratings={item.rating}
                 image={item.image_url}
                 navigation={navigation}
@@ -127,8 +129,7 @@ const handleEndReached = () => {
     numColumns={2}
     onEndReached={handleEndReached}
       onEndReachedThreshold={0.1}
-      ListFooterComponent={loadingEndData && <
-      Spinner absolute={"absolute"} mb={10}/>}
+      ListFooterComponent={loadingEndData && <Spinner/>}
     ListHeaderComponent={
     <>
          <BillBoard navigation={navigation}/>

@@ -1,19 +1,13 @@
 import {styles} from "./BusinessScreen.style"
 import {Text,TouchableOpacity, Linking, ScrollView, View,FlatList, Image} from "react-native"
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { useRoute } from '@react-navigation/native';
+import { useRoute, RouteProp } from '@react-navigation/native';
 import Yelp from "../../api/yelp/Yelp"
 import {useEffect, useContext, useState} from "react"
 import {DataContext} from "../../context/DataContext"
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import Stars from "../../components/stars/Stars"
-import { FontAwesome } from '@expo/vector-icons';
-import {colors} from "../../utils/colors/colors"
-import { EvilIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-import {stylesbill} from "../../components/bill board/BillBoard.style"
-import Swiper from 'react-native-swiper';
 import { Octicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -21,10 +15,11 @@ import MySwiper from "../../components/swiper/Swiper"
 import { AirbnbRating } from 'react-native-ratings';
 import Spinner from '../../components/spinner/Spinner';
 
-
 const BusinessScreen = ({navigation}) => {
   const { state, dispatch } = useContext(DataContext)
- const route= useRoute() 
+  const route = useRoute()
+ 
+  
  const [data, setData] = useState(null)
  const [reRender, setReRender] = useState(false)
  
@@ -32,7 +27,8 @@ const BusinessScreen = ({navigation}) => {
    dispatch({type:"IS_BUSINESS_SCREEN", payload:true})
    const getResultDetails = async () => {
      try {
-  if(route.params.id){
+
+       if (route.params && typeof route.params === 'object' && 'id' in route.params) {
      const response = await Yelp.get(`/${route.params.id}`)
      setReRender(true)
      setData(response.data)
@@ -109,8 +105,7 @@ if(data){
         reviews={['Terrible', 'Bad', 'OK', 'Good', 'Great']}
         defaultRating={data.rating}
         size={20}
-        isDisabled={true}
-        fractions={1}
+                    isDisabled={true}
         showRating={false}
         selectedColor={'orangered'}
       />
