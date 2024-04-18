@@ -7,12 +7,12 @@ const NoInternetScreen = ({navigation}) => {
     const { state, dispatch } = useContext(DataContext)
     
     const navigateToHome = () => {
-        state.reloadDataFunction()
         if (state.isNetworkConnected) {
-            navigation.navigate("home")
+            state.reloadDataFunction()
+            navigation.navigate("TabNavigation")
         }
         else {
-            navigation.navigate("home")
+            navigation.navigate("TabNavigation")
             setTimeout(() => {
                 navigation.navigate("noInternet")
             }, 500)

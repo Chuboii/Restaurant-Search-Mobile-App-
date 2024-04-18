@@ -76,7 +76,7 @@ setLoadingEndData(false)
 
   useEffect(() => {
     if (state.isNetworkConnected) {
-      navigation.navigate("TabNavigation")
+      // navigation.navigate("TabNavigation")
   }
   else {
     navigation.navigate("noInternet")
