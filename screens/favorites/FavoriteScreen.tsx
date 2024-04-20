@@ -12,10 +12,16 @@ const FavoriteScreen = ({navigation}) => {
   const navigateBack = () => navigation.goBack()
 
   useEffect(() => {
-    console.log(cachedData().data).length;
-    
-    extractData('data', "")
-    
+    extractData('data')
+    console.log(cachedData)
+  
+    /*
+    if(cachedData().data.length > 0){
+      extractData('data', "")
+    }
+    else{
+      storeData("data", [])
+    }*/
   }, [cachedData])
 
   return (
@@ -26,7 +32,7 @@ const FavoriteScreen = ({navigation}) => {
         </TouchableOpacity>
         <Text style={styles.hTxt}>Favorites</Text>
       </View>
-
+{/*
       <FlatList
         keyExtractor={(data) => data.id}
         data={cachedData().data}
@@ -47,7 +53,7 @@ const FavoriteScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
         </View>
-        } />
+        } /> */}
 
     </SafeAreaView>
   )

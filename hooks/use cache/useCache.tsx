@@ -2,41 +2,55 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 
 
-
-
 export default () => {
-   const [cachedData, setCachedData] = useState(null)
+   const [cachedData, setCachedData] = useState([])
 
-    const storeData = async (key: string, value) => {
-        const stringifiedValue = JSON.stringify(value)
 
-        try {
-          await AsyncStorage.setItem(key, stringifiedValue);
-          console.log('Data stored successfully!');
-        } catch (error) {
-          console.log('Error storing data: ', error);
-        }
-      };
+
+
+const clearAllData = async () => {
+  
+  storage.remove({
+
+  key: 'lastPage'
+
+});
+storage.remove({
+  key: 'user',
+  id: '1001'
+});
+
+storage.clearMap();
+}
+
+const storeData = async (key: string, value) => {
+  try {
+    const jsonValue = JSON.stringify(value);
+    await AsyncStorage.setItem('data', jsonValue);
+    console.log("data saved")
+  } 
+  catch(err){
+    console.log("error storing data", err)
+  }
+    }
       
-    const extractData = async(key = 'data') => {
-        try {
+      
+      
+      
+const extractData = async(key) => {
+
+  try {
+    const jsonValue = await AsyncStorage.getItem('data');
+    console.log(jsonValue != null ? JSON.parse(jsonValue) : null)
     
-            
-  // Retrieve JSON string from AsyncStorage
-  const jsonString = await AsyncStorage.getItem(key);
-  if (jsonString !== null) {
-    // Parse JSON string back to object
-    const userData = JSON.parse(jsonString);
-      console.log('User data retrieved successfully: ', userData);
-      setCachedData(userData)
-  } else {
-    console.log('No user data found in storage.');
-          }
-        } catch (error) {
-          console.log('Error retrieving data: ', error);
-        }
-      };
-      
+    return jsonValue != null ? JSON.parse(jsonValue) : null
+    
+  } catch (e) {
+    // error reading value
+    console.log("error storin data", e)
+  }
+
+}
 
     return [storeData, extractData, cachedData]
 }

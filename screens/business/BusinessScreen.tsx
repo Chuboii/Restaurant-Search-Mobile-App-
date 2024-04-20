@@ -20,9 +20,12 @@ import { colors } from "../../utils/colors/colors";
 const BusinessScreen = ({navigation}) => {
   const { state, dispatch } = useContext(DataContext)
   const route = useRoute()
- const [storeData, extractData] = useCache()
+ const [storeData, extractData, cachedData] = useCache()
  const [data, setData] = useState(null)
  const [reRender, setReRender] = useState(false)
+ const [cachedArr, setCachedArr] = useState(cachedData)
+ 
+ 
  
  useEffect(() => {
    dispatch({type:"IS_BUSINESS_SCREEN", payload:true})
@@ -76,7 +79,14 @@ const openExternalLink = () => {
   
 }
   
+const storeCachedData = () => {
+ // console.log(cachedArr)
+  setCachedArr(prev => [...prev, data])
 
+ storeData("data", cachedArr)
+ 
+ //console.log(cachedData)
+}
 
 if(data){
   return (
@@ -116,7 +126,7 @@ if(data){
 
     <Text style={styles.text}> ({data ? data.rating : "" })</Text>
     </View>
-    <TouchableOpacity onPress={() => storeData("data", data)} style={styles.fav}>
+    <TouchableOpacity onPress={() => storeCachedData()} style={styles.fav}>
                 <MaterialIcons name="favorite-border" size={30} style={styles.heart}
                   color={colors.tertiary} />
 
