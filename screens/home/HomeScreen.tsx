@@ -14,13 +14,20 @@ import WelcomeText from "../../components/welcome text/WelcomeText"
 import BillBoard from "../../components/bill board/BillBoard"
 import HomeHeader from "../../components/home header/HomeHeader"
 import Spinner from "../../components/spinner/Spinner"
-
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded
+} from "expo";
 
 const HomeScreen = ({ navigation }) => {
   const { state, dispatch } = useContext(DataContext)
 const [loading, setLoading] = useState(false)
 const [dataLimit, setDataLimit] = useState(6)
 const [loadingEndData, setLoadingEndData] = useState(false)
+
+
 
 const retriveDataFromApi = async (prevent : string) => {
      try{
